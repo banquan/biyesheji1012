@@ -1,9 +1,12 @@
 package lgj.example.com.biyesheji.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import lgj.example.com.biyesheji.R;
+import lgj.example.com.biyesheji.ui.activity.ShowAnnounceActivity;
 import lgj.example.com.biyesheji.ui.activity.WriteAnnounceActivity;
 import lgj.example.com.biyesheji.ui.adapter.AnnounceListViewAdapter;
 import lgj.example.com.biyesheji.ui.bean.Announcement;
@@ -58,6 +62,23 @@ public class MainFragment extends BaseFragment{
                 }else{
                     showToast("只有管理员才可发布公告");
                 }
+            }
+        });
+        //给listview设置点击事件
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //获得点击时当前位置的title，和content
+                String title = (String) ((TextView)view.findViewById(R.id.title_announce)).getText();
+                String content=(String) ((TextView)view.findViewById(R.id.content_announce)).getText();
+                //将title和content传递到展示的页面
+                Intent intent = new Intent(getActivity().getApplicationContext(), ShowAnnounceActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", title);
+                bundle.putString("content", content);
+                intent.putExtras(bundle);
+        //这里一定要获取到所在Activity再startActivity()；
+                getActivity().startActivity(intent);
             }
         });
     }

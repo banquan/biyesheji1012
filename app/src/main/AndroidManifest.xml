@@ -39,6 +39,8 @@
         </activity>
         <activity android:name=".ui.activity.WriteAnnounceActivity">
         </activity>
+        <activity android:name=".ui.activity.ShowAnnounceActivity">
+        </activity>
     </application>
 
 </manifest>
