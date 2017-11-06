@@ -19,6 +19,7 @@
         android:id="@+id/content_write_announce"
         android:hint="内容:"
         app:funcType="canClear"
+        android:background="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_write_announce"
